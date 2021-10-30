@@ -202,7 +202,7 @@ namespace CraftopiaSavefileEditor
 
             try
             {
-                //OcsController.SaveOcs(path, Manual_Scintilla.Text);
+                OcsController.SaveOcs(path, Manual_Scintilla.Text);
                 MessageBox.Show("OCSファイルを保存しました。", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -210,6 +210,29 @@ namespace CraftopiaSavefileEditor
                 MessageBox.Show($"OCSファイルの保存に失敗しました。\r\nエラー詳細: {ex.Message}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        private void Manual_Scintilla_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.All;
+            else
+                e.Effect = DragDropEffects.None;
+        }
+
+        private void Manual_Scintilla_DragDrop(object sender, DragEventArgs e)
+        {
+            var files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            if(Path.GetExtension(files[0]) != ".ocs")
+            {
+                MessageBox.Show("ocs以外のファイルが選択されています。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            Manual_Filepath_TextBox.Text = files[0];
+            Manual_Scintilla.Text = OcsController.LoadOcs(files[0]);
+        }
         #endregion
+
+
     }
 }

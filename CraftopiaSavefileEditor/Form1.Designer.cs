@@ -43,14 +43,16 @@ namespace CraftopiaSavefileEditor
             this.Manual_Filepath_TextBox = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.Manual_Scintilla = new ScintillaNET.Scintilla();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.OcsJsonConvert_TableLayoutPanel.SuspendLayout();
             this.ConvertOcs2Json_Panel.SuspendLayout();
             this.ConvertJson2Ocs_Panel.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -144,11 +146,7 @@ namespace CraftopiaSavefileEditor
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.panel1);
-            this.tabPage2.Controls.Add(this.Manual_FileSave_Button);
-            this.tabPage2.Controls.Add(this.Manual_FileBrowse_Button);
-            this.tabPage2.Controls.Add(this.Manual_Open_Button);
-            this.tabPage2.Controls.Add(this.Manual_Filepath_TextBox);
+            this.tabPage2.Controls.Add(this.tableLayoutPanel1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -159,9 +157,9 @@ namespace CraftopiaSavefileEditor
             // 
             // Manual_FileSave_Button
             // 
-            this.Manual_FileSave_Button.Location = new System.Drawing.Point(740, 6);
+            this.Manual_FileSave_Button.Location = new System.Drawing.Point(723, 3);
             this.Manual_FileSave_Button.Name = "Manual_FileSave_Button";
-            this.Manual_FileSave_Button.Size = new System.Drawing.Size(44, 23);
+            this.Manual_FileSave_Button.Size = new System.Drawing.Size(54, 23);
             this.Manual_FileSave_Button.TabIndex = 1;
             this.Manual_FileSave_Button.Text = "保存";
             this.Manual_FileSave_Button.UseVisualStyleBackColor = true;
@@ -169,9 +167,9 @@ namespace CraftopiaSavefileEditor
             // 
             // Manual_FileBrowse_Button
             // 
-            this.Manual_FileBrowse_Button.Location = new System.Drawing.Point(690, 6);
+            this.Manual_FileBrowse_Button.Location = new System.Drawing.Point(663, 3);
             this.Manual_FileBrowse_Button.Name = "Manual_FileBrowse_Button";
-            this.Manual_FileBrowse_Button.Size = new System.Drawing.Size(44, 23);
+            this.Manual_FileBrowse_Button.Size = new System.Drawing.Size(54, 23);
             this.Manual_FileBrowse_Button.TabIndex = 1;
             this.Manual_FileBrowse_Button.Text = "参照";
             this.Manual_FileBrowse_Button.UseVisualStyleBackColor = true;
@@ -179,9 +177,9 @@ namespace CraftopiaSavefileEditor
             // 
             // Manual_Open_Button
             // 
-            this.Manual_Open_Button.Location = new System.Drawing.Point(640, 6);
+            this.Manual_Open_Button.Location = new System.Drawing.Point(603, 3);
             this.Manual_Open_Button.Name = "Manual_Open_Button";
-            this.Manual_Open_Button.Size = new System.Drawing.Size(44, 23);
+            this.Manual_Open_Button.Size = new System.Drawing.Size(54, 23);
             this.Manual_Open_Button.TabIndex = 1;
             this.Manual_Open_Button.Text = "開く";
             this.Manual_Open_Button.UseVisualStyleBackColor = true;
@@ -189,10 +187,10 @@ namespace CraftopiaSavefileEditor
             // 
             // Manual_Filepath_TextBox
             // 
-            this.Manual_Filepath_TextBox.Location = new System.Drawing.Point(3, 8);
+            this.Manual_Filepath_TextBox.Location = new System.Drawing.Point(5, 5);
             this.Manual_Filepath_TextBox.Margin = new System.Windows.Forms.Padding(5);
             this.Manual_Filepath_TextBox.Name = "Manual_Filepath_TextBox";
-            this.Manual_Filepath_TextBox.Size = new System.Drawing.Size(629, 19);
+            this.Manual_Filepath_TextBox.Size = new System.Drawing.Size(590, 19);
             this.Manual_Filepath_TextBox.TabIndex = 0;
             // 
             // tabPage3
@@ -206,26 +204,54 @@ namespace CraftopiaSavefileEditor
             // 
             // Manual_Scintilla
             // 
+            this.Manual_Scintilla.AllowDrop = true;
             this.Manual_Scintilla.AutoCMaxHeight = 9;
             this.Manual_Scintilla.BiDirectionality = ScintillaNET.BiDirectionalDisplayType.Disabled;
             this.Manual_Scintilla.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Manual_Scintilla.Location = new System.Drawing.Point(0, 0);
+            this.Manual_Scintilla.Location = new System.Drawing.Point(3, 38);
             this.Manual_Scintilla.Name = "Manual_Scintilla";
             this.Manual_Scintilla.ScrollWidth = 49;
-            this.Manual_Scintilla.Size = new System.Drawing.Size(786, 386);
+            this.Manual_Scintilla.Size = new System.Drawing.Size(780, 377);
             this.Manual_Scintilla.TabIndents = true;
             this.Manual_Scintilla.TabIndex = 4;
             this.Manual_Scintilla.UseRightToLeftReadingLayout = false;
             this.Manual_Scintilla.WrapMode = ScintillaNET.WrapMode.None;
+            this.Manual_Scintilla.DragDrop += new System.Windows.Forms.DragEventHandler(this.Manual_Scintilla_DragDrop);
+            this.Manual_Scintilla.DragEnter += new System.Windows.Forms.DragEventHandler(this.Manual_Scintilla_DragEnter);
             // 
-            // panel1
+            // tableLayoutPanel1
             // 
-            this.panel1.Controls.Add(this.Manual_Scintilla);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(3, 35);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(786, 386);
-            this.panel1.TabIndex = 5;
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.Manual_Scintilla, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(786, 418);
+            this.tableLayoutPanel1.TabIndex = 5;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 4;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel2.Controls.Add(this.Manual_Filepath_TextBox, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.Manual_FileSave_Button, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.Manual_Open_Button, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.Manual_FileBrowse_Button, 2, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(780, 29);
+            this.tableLayoutPanel2.TabIndex = 5;
             // 
             // Form1
             // 
@@ -244,8 +270,9 @@ namespace CraftopiaSavefileEditor
             this.ConvertJson2Ocs_Panel.ResumeLayout(false);
             this.ConvertJson2Ocs_Panel.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            this.panel1.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -266,7 +293,8 @@ namespace CraftopiaSavefileEditor
         private System.Windows.Forms.Panel ConvertJson2Ocs_Panel;
         private System.Windows.Forms.Button Manual_Open_Button;
         private ScintillaNET.Scintilla Manual_Scintilla;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
     }
 }
 
