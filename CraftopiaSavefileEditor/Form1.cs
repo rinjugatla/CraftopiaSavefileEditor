@@ -3,6 +3,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CraftopiaSavefileEditor.Controller;
@@ -20,6 +21,7 @@ namespace CraftopiaSavefileEditor
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.Text += $" {this.ProductVersion}";
             this.MinimumSize = this.Size;
 
             // https://github.com/robinrodricks/ScintillaNET.Demo/blob/b5f0e74bce15b8f18d0ffd5d5c7a8ba382162ff1/ScintillaNET.Demo/MainForm.cs

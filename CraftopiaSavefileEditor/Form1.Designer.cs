@@ -30,36 +30,38 @@ namespace CraftopiaSavefileEditor
         private void InitializeComponent()
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.ConvertOcsJson_TabPage = new System.Windows.Forms.TabPage();
             this.OcsJsonConvert_TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.ConvertOcs2Json_Panel = new System.Windows.Forms.Panel();
             this.ConvertOcs2Json_Label = new System.Windows.Forms.Label();
             this.ConvertJson2Ocs_Panel = new System.Windows.Forms.Panel();
             this.ConvertJson2Ocs_Label = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.Manual_TabPage = new System.Windows.Forms.TabPage();
             this.Manual_FileSave_Button = new System.Windows.Forms.Button();
             this.Manual_FileBrowse_Button = new System.Windows.Forms.Button();
             this.Manual_Open_Button = new System.Windows.Forms.Button();
             this.Manual_Filepath_TextBox = new System.Windows.Forms.TextBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.MapEdit_TabPage = new System.Windows.Forms.TabPage();
             this.Manual_Scintilla = new ScintillaNET.Scintilla();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.ConvertOcsJson_TabPage.SuspendLayout();
             this.OcsJsonConvert_TableLayoutPanel.SuspendLayout();
             this.ConvertOcs2Json_Panel.SuspendLayout();
             this.ConvertJson2Ocs_Panel.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.Manual_TabPage.SuspendLayout();
+            this.MapEdit_TabPage.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.ConvertOcsJson_TabPage);
+            this.tabControl1.Controls.Add(this.Manual_TabPage);
+            this.tabControl1.Controls.Add(this.MapEdit_TabPage);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -67,16 +69,16 @@ namespace CraftopiaSavefileEditor
             this.tabControl1.Size = new System.Drawing.Size(800, 450);
             this.tabControl1.TabIndex = 0;
             // 
-            // tabPage1
+            // ConvertOcsJson_TabPage
             // 
-            this.tabPage1.Controls.Add(this.OcsJsonConvert_TableLayoutPanel);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(792, 424);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "OCS<->JSON変換";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.ConvertOcsJson_TabPage.Controls.Add(this.OcsJsonConvert_TableLayoutPanel);
+            this.ConvertOcsJson_TabPage.Location = new System.Drawing.Point(4, 22);
+            this.ConvertOcsJson_TabPage.Name = "ConvertOcsJson_TabPage";
+            this.ConvertOcsJson_TabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.ConvertOcsJson_TabPage.Size = new System.Drawing.Size(792, 424);
+            this.ConvertOcsJson_TabPage.TabIndex = 0;
+            this.ConvertOcsJson_TabPage.Text = "OCS<->JSON変換";
+            this.ConvertOcsJson_TabPage.UseVisualStyleBackColor = true;
             // 
             // OcsJsonConvert_TableLayoutPanel
             // 
@@ -144,16 +146,16 @@ namespace CraftopiaSavefileEditor
             this.ConvertJson2Ocs_Label.TabIndex = 0;
             this.ConvertJson2Ocs_Label.Text = "OCSに変換";
             // 
-            // tabPage2
+            // Manual_TabPage
             // 
-            this.tabPage2.Controls.Add(this.tableLayoutPanel1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(792, 424);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "OCS手動編集";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.Manual_TabPage.Controls.Add(this.tableLayoutPanel1);
+            this.Manual_TabPage.Location = new System.Drawing.Point(4, 22);
+            this.Manual_TabPage.Name = "Manual_TabPage";
+            this.Manual_TabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.Manual_TabPage.Size = new System.Drawing.Size(792, 424);
+            this.Manual_TabPage.TabIndex = 1;
+            this.Manual_TabPage.Text = "OCS手動編集";
+            this.Manual_TabPage.UseVisualStyleBackColor = true;
             // 
             // Manual_FileSave_Button
             // 
@@ -193,14 +195,15 @@ namespace CraftopiaSavefileEditor
             this.Manual_Filepath_TextBox.Size = new System.Drawing.Size(590, 19);
             this.Manual_Filepath_TextBox.TabIndex = 0;
             // 
-            // tabPage3
+            // MapEdit_TabPage
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(792, 424);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "MAP編集";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.MapEdit_TabPage.Controls.Add(this.label1);
+            this.MapEdit_TabPage.Location = new System.Drawing.Point(4, 22);
+            this.MapEdit_TabPage.Name = "MapEdit_TabPage";
+            this.MapEdit_TabPage.Size = new System.Drawing.Size(792, 424);
+            this.MapEdit_TabPage.TabIndex = 2;
+            this.MapEdit_TabPage.Text = "MAP編集";
+            this.MapEdit_TabPage.UseVisualStyleBackColor = true;
             // 
             // Manual_Scintilla
             // 
@@ -253,6 +256,15 @@ namespace CraftopiaSavefileEditor
             this.tableLayoutPanel2.Size = new System.Drawing.Size(780, 29);
             this.tableLayoutPanel2.TabIndex = 5;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(88, 47);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(129, 12);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "移植する機能とか作りたい";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -260,16 +272,18 @@ namespace CraftopiaSavefileEditor
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Craftopia セーブファイル編集ツール";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
+            this.ConvertOcsJson_TabPage.ResumeLayout(false);
             this.OcsJsonConvert_TableLayoutPanel.ResumeLayout(false);
             this.ConvertOcs2Json_Panel.ResumeLayout(false);
             this.ConvertOcs2Json_Panel.PerformLayout();
             this.ConvertJson2Ocs_Panel.ResumeLayout(false);
             this.ConvertJson2Ocs_Panel.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
+            this.Manual_TabPage.ResumeLayout(false);
+            this.MapEdit_TabPage.ResumeLayout(false);
+            this.MapEdit_TabPage.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -280,9 +294,9 @@ namespace CraftopiaSavefileEditor
         #endregion
 
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage ConvertOcsJson_TabPage;
+        private System.Windows.Forms.TabPage Manual_TabPage;
+        private System.Windows.Forms.TabPage MapEdit_TabPage;
         private System.Windows.Forms.TableLayoutPanel OcsJsonConvert_TableLayoutPanel;
         private System.Windows.Forms.Label ConvertOcs2Json_Label;
         private System.Windows.Forms.Button Manual_FileSave_Button;
@@ -295,6 +309,7 @@ namespace CraftopiaSavefileEditor
         private ScintillaNET.Scintilla Manual_Scintilla;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Label label1;
     }
 }
 
