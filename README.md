@@ -31,3 +31,14 @@
   
   OCSを編集した後は「保存」ボタンを押下します。
   「保存」ボタンを押下しない限りはファイルを保存しませんのでご注意ください。
+
+
+## NuGetパッケージ
+
+本ツールは以下のNuGetパッケージを利用しています。
+
+* ScintillaNET
+https://github.com/VPKSoft/ScintillaNET/blob/master/LICENSE
+
+* ScintillaNET-FindReplaceDialog
+https://github.com/VPKSoft/ScintillaNET-FindReplaceDialog/blob/master/LICENSE
