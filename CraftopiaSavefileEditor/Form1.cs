@@ -25,6 +25,7 @@ namespace CraftopiaSavefileEditor
             this.MinimumSize = this.Size;
 
             // https://github.com/robinrodricks/ScintillaNET.Demo/blob/b5f0e74bce15b8f18d0ffd5d5c7a8ba382162ff1/ScintillaNET.Demo/MainForm.cs
+            InitHotkeys();
             InitSyntaxColoring();
             InitNumberMargin();
             InitCodeFolding();
@@ -46,12 +47,16 @@ namespace CraftopiaSavefileEditor
             //HotKeyManager.AddHotKey(this, ZoomDefault, Keys.D0, true);
             //HotKeyManager.AddHotKey(this, CloseSearch, Keys.Escape);
 
-            //// remove conflicting hotkeys from scintilla
-            //TextArea.ClearCmdKey(Keys.Control | Keys.F);
-            //TextArea.ClearCmdKey(Keys.Control | Keys.R);
-            //TextArea.ClearCmdKey(Keys.Control | Keys.H);
-            //TextArea.ClearCmdKey(Keys.Control | Keys.L);
-            //TextArea.ClearCmdKey(Keys.Control | Keys.U);
+            // remove conflicting hotkeys from scintilla
+            Manual_Scintilla.ClearCmdKey(Keys.Control | Keys.F);
+            Manual_Scintilla.ClearCmdKey(Keys.Control | Keys.S);
+            Manual_Scintilla.ClearCmdKey(Keys.Control | Keys.R);
+            Manual_Scintilla.ClearCmdKey(Keys.Control | Keys.H);
+            Manual_Scintilla.ClearCmdKey(Keys.Control | Keys.L);
+            Manual_Scintilla.ClearCmdKey(Keys.Control | Keys.U);
+            Manual_Scintilla.ClearCmdKey(Keys.Control | Keys.Q);
+            Manual_Scintilla.ClearCmdKey(Keys.Control | Keys.W);
+            Manual_Scintilla.ClearCmdKey(Keys.Control | Keys.E);
 
         }
 
