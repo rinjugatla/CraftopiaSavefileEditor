@@ -1,5 +1,5 @@
 ﻿
-namespace CraftopiaSavefileEditor
+namespace CraftopiaSavefileEditor.View
 {
     partial class OcsJsonConvertRsultForm
     {

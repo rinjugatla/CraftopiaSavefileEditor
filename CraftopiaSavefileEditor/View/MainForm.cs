@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using CraftopiaSavefileEditor.Controller;
 using ScintillaNET;
 
-namespace CraftopiaSavefileEditor
+namespace CraftopiaSavefileEditor.View
 {
     public partial class MainForm : Form
     {
