@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -29,6 +30,8 @@ namespace CraftopiaSavefileEditor
             InitSyntaxColoring();
             InitNumberMargin();
             InitCodeFolding();
+
+            InitMapDataGridView();
         }
 
         #region Scintilla
@@ -145,22 +148,74 @@ namespace CraftopiaSavefileEditor
                 e.Effect = DragDropEffects.None;
         }
 
+        /// <summary>
+        /// OCSからJSONに変換
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ConvertOcs2Json_Panel_DragDrop(object sender, DragEventArgs e)
         {
             var files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             var ocss = files.Where(f => Path.GetExtension(f) == ".ocs");
 
+            List<(string path, bool isSuccess, string message)> result = new List<(string, bool, string)>();
             foreach (var ocs in ocss)
-                OcsController.ConvertOcs2Json(ocs);
+            {
+                try
+                {
+                    OcsController.ConvertOcs2Json(ocs);
+                    result.Add((ocs, true, null));
+                }
+                catch (Exception ex)
+                {
+                    result.Add((ocs, false, ex.Message));
+                }
+            }
+
+            ShowOcsJsonConvertResult(result);
         }
 
+        /// <summary>
+        /// JSONからOCSに変換
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ConvertJson2Ocs_Panel_DragDrop(object sender, DragEventArgs e)
         {
             var files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             var jsons = files.Where(f => Path.GetExtension(f) == ".json");
 
+            List<(string path, bool isSuccess, string message)> result = new List<(string, bool, string)>();
             foreach (var json in jsons)
-                OcsController.ConvertJson2Ocs(json);
+            {
+                try
+                {
+                    OcsController.ConvertJson2Ocs(json);
+                    result.Add((json, true, null));
+                }
+                catch (Exception ex)
+                {
+                    result.Add((json, false, ex.Message));
+                }
+            }
+
+            ShowOcsJsonConvertResult(result);
+        }
+
+        /// <summary>
+        /// OCS, JSONの変換結果を表示
+        /// </summary>
+        /// <param name="result"></param>
+        private void ShowOcsJsonConvertResult(IReadOnlyList<(string path, bool isSuccess, string message)> result)
+        {
+            int success = result.Where(n => n.isSuccess).Count();
+            int faild = result.Count - success;
+            if (MessageBox.Show($"成功: {success}\n失敗{faild}\n\n詳細を表示しますか？", "変換結果", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                // 詳細表示
+                OcsJsonConvertRsultForm form = new OcsJsonConvertRsultForm(result);
+                form.Show();
+            }
         }
         #endregion
 
@@ -240,6 +295,18 @@ namespace CraftopiaSavefileEditor
         }
         #endregion
 
+        private void InitMapDataGridView()
+        {
+            IEnumerable<int> headers = Enumerable.Range(1, 11);
+            List<DataGridViewTextBoxColumn> columns = new List<DataGridViewTextBoxColumn>();
 
+
+            foreach (var header in headers)
+            {
+                columns.Add(new DataGridViewTextBoxColumn() {  Name = $"Column{header}", HeaderText = $"{header}"});
+            }
+
+            dataGridView1.Columns.AddRange(columns.ToArray());
+        }
     }
 }

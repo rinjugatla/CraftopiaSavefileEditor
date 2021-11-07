@@ -14,13 +14,32 @@ namespace CraftopiaSavefileEditor.Controller
         /// ocsファイルをjsonファイルに変換
         /// </summary>
         /// <param name="path">ocsファイルパス</param>
-        public static void ConvertOcs2Json(string path)
+        /// <returns>保存先パス</returns>
+        public static string ConvertOcs2Json(string path)
         {
-            string text = LoadOcs(path);
+            string text = "";
+            try
+            {
+                text = LoadOcs(path);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            
             string savePath = $@"{Path.GetDirectoryName(path)}\{Path.GetFileNameWithoutExtension(path)}.json";
 
-            using (StreamWriter sw = new StreamWriter(savePath, false, Encoding.UTF8))
-                sw.Write(text);
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(savePath, false, Encoding.UTF8))
+                    sw.Write(text);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return savePath;
         }
 
         /// <summary>
@@ -36,11 +55,19 @@ namespace CraftopiaSavefileEditor.Controller
             using (FileStream fsIn = new FileStream(path, FileMode.Open, FileAccess.Read))
             using (GZipStream gz = new GZipStream(fsIn, CompressionMode.Decompress))
             {
-                int size = 0;
-                while ((size = gz.Read(buffer, 0, buffer.Length)) > 0)
+                try
                 {
-                    sb.Append(Encoding.UTF8.GetString(buffer, 0, size));
+                    int size = 0;
+                    while ((size = gz.Read(buffer, 0, buffer.Length)) > 0)
+                    {
+                        sb.Append(Encoding.UTF8.GetString(buffer, 0, size));
+                    }
                 }
+                catch (InvalidDataException ex)
+                {
+                    throw new InvalidDataException("ocsファイルが破損しています。");
+                }
+                
             }
 
             return sb.ToString();

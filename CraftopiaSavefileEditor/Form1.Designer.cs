@@ -37,24 +37,25 @@ namespace CraftopiaSavefileEditor
             this.ConvertJson2Ocs_Panel = new System.Windows.Forms.Panel();
             this.ConvertJson2Ocs_Label = new System.Windows.Forms.Label();
             this.Manual_TabPage = new System.Windows.Forms.TabPage();
-            this.Manual_FileSave_Button = new System.Windows.Forms.Button();
-            this.Manual_FileBrowse_Button = new System.Windows.Forms.Button();
-            this.Manual_Open_Button = new System.Windows.Forms.Button();
-            this.Manual_Filepath_TextBox = new System.Windows.Forms.TextBox();
-            this.MapEdit_TabPage = new System.Windows.Forms.TabPage();
-            this.Manual_Scintilla = new ScintillaNET.Scintilla();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.Manual_Scintilla = new ScintillaNET.Scintilla();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.Manual_Filepath_TextBox = new System.Windows.Forms.TextBox();
+            this.Manual_FileSave_Button = new System.Windows.Forms.Button();
+            this.Manual_Open_Button = new System.Windows.Forms.Button();
+            this.Manual_FileBrowse_Button = new System.Windows.Forms.Button();
+            this.MapEdit_TabPage = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
             this.ConvertOcsJson_TabPage.SuspendLayout();
             this.OcsJsonConvert_TableLayoutPanel.SuspendLayout();
             this.ConvertOcs2Json_Panel.SuspendLayout();
             this.ConvertJson2Ocs_Panel.SuspendLayout();
             this.Manual_TabPage.SuspendLayout();
-            this.MapEdit_TabPage.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.MapEdit_TabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -157,53 +158,20 @@ namespace CraftopiaSavefileEditor
             this.Manual_TabPage.Text = "OCS手動編集";
             this.Manual_TabPage.UseVisualStyleBackColor = true;
             // 
-            // Manual_FileSave_Button
+            // tableLayoutPanel1
             // 
-            this.Manual_FileSave_Button.Location = new System.Drawing.Point(723, 3);
-            this.Manual_FileSave_Button.Name = "Manual_FileSave_Button";
-            this.Manual_FileSave_Button.Size = new System.Drawing.Size(54, 23);
-            this.Manual_FileSave_Button.TabIndex = 1;
-            this.Manual_FileSave_Button.Text = "保存";
-            this.Manual_FileSave_Button.UseVisualStyleBackColor = true;
-            this.Manual_FileSave_Button.Click += new System.EventHandler(this.Manual_FileSave_Button_Click);
-            // 
-            // Manual_FileBrowse_Button
-            // 
-            this.Manual_FileBrowse_Button.Location = new System.Drawing.Point(663, 3);
-            this.Manual_FileBrowse_Button.Name = "Manual_FileBrowse_Button";
-            this.Manual_FileBrowse_Button.Size = new System.Drawing.Size(54, 23);
-            this.Manual_FileBrowse_Button.TabIndex = 1;
-            this.Manual_FileBrowse_Button.Text = "参照";
-            this.Manual_FileBrowse_Button.UseVisualStyleBackColor = true;
-            this.Manual_FileBrowse_Button.Click += new System.EventHandler(this.Manual_FileBrowse_Button_Click);
-            // 
-            // Manual_Open_Button
-            // 
-            this.Manual_Open_Button.Location = new System.Drawing.Point(603, 3);
-            this.Manual_Open_Button.Name = "Manual_Open_Button";
-            this.Manual_Open_Button.Size = new System.Drawing.Size(54, 23);
-            this.Manual_Open_Button.TabIndex = 1;
-            this.Manual_Open_Button.Text = "開く";
-            this.Manual_Open_Button.UseVisualStyleBackColor = true;
-            this.Manual_Open_Button.Click += new System.EventHandler(this.Manual_Open_Button_Click);
-            // 
-            // Manual_Filepath_TextBox
-            // 
-            this.Manual_Filepath_TextBox.Location = new System.Drawing.Point(5, 5);
-            this.Manual_Filepath_TextBox.Margin = new System.Windows.Forms.Padding(5);
-            this.Manual_Filepath_TextBox.Name = "Manual_Filepath_TextBox";
-            this.Manual_Filepath_TextBox.Size = new System.Drawing.Size(590, 19);
-            this.Manual_Filepath_TextBox.TabIndex = 0;
-            // 
-            // MapEdit_TabPage
-            // 
-            this.MapEdit_TabPage.Controls.Add(this.label1);
-            this.MapEdit_TabPage.Location = new System.Drawing.Point(4, 22);
-            this.MapEdit_TabPage.Name = "MapEdit_TabPage";
-            this.MapEdit_TabPage.Size = new System.Drawing.Size(792, 424);
-            this.MapEdit_TabPage.TabIndex = 2;
-            this.MapEdit_TabPage.Text = "MAP編集";
-            this.MapEdit_TabPage.UseVisualStyleBackColor = true;
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.Manual_Scintilla, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(786, 418);
+            this.tableLayoutPanel1.TabIndex = 5;
             // 
             // Manual_Scintilla
             // 
@@ -221,21 +189,6 @@ namespace CraftopiaSavefileEditor
             this.Manual_Scintilla.WrapMode = ScintillaNET.WrapMode.None;
             this.Manual_Scintilla.DragDrop += new System.Windows.Forms.DragEventHandler(this.Manual_Scintilla_DragDrop);
             this.Manual_Scintilla.DragEnter += new System.Windows.Forms.DragEventHandler(this.Manual_Scintilla_DragEnter);
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.Manual_Scintilla, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(786, 418);
-            this.tableLayoutPanel1.TabIndex = 5;
             // 
             // tableLayoutPanel2
             // 
@@ -256,14 +209,62 @@ namespace CraftopiaSavefileEditor
             this.tableLayoutPanel2.Size = new System.Drawing.Size(780, 29);
             this.tableLayoutPanel2.TabIndex = 5;
             // 
-            // label1
+            // Manual_Filepath_TextBox
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(88, 47);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(129, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "移植する機能とか作りたい";
+            this.Manual_Filepath_TextBox.Location = new System.Drawing.Point(5, 5);
+            this.Manual_Filepath_TextBox.Margin = new System.Windows.Forms.Padding(5);
+            this.Manual_Filepath_TextBox.Name = "Manual_Filepath_TextBox";
+            this.Manual_Filepath_TextBox.Size = new System.Drawing.Size(590, 19);
+            this.Manual_Filepath_TextBox.TabIndex = 0;
+            // 
+            // Manual_FileSave_Button
+            // 
+            this.Manual_FileSave_Button.Location = new System.Drawing.Point(723, 3);
+            this.Manual_FileSave_Button.Name = "Manual_FileSave_Button";
+            this.Manual_FileSave_Button.Size = new System.Drawing.Size(54, 23);
+            this.Manual_FileSave_Button.TabIndex = 1;
+            this.Manual_FileSave_Button.Text = "保存";
+            this.Manual_FileSave_Button.UseVisualStyleBackColor = true;
+            this.Manual_FileSave_Button.Click += new System.EventHandler(this.Manual_FileSave_Button_Click);
+            // 
+            // Manual_Open_Button
+            // 
+            this.Manual_Open_Button.Location = new System.Drawing.Point(603, 3);
+            this.Manual_Open_Button.Name = "Manual_Open_Button";
+            this.Manual_Open_Button.Size = new System.Drawing.Size(54, 23);
+            this.Manual_Open_Button.TabIndex = 1;
+            this.Manual_Open_Button.Text = "開く";
+            this.Manual_Open_Button.UseVisualStyleBackColor = true;
+            this.Manual_Open_Button.Click += new System.EventHandler(this.Manual_Open_Button_Click);
+            // 
+            // Manual_FileBrowse_Button
+            // 
+            this.Manual_FileBrowse_Button.Location = new System.Drawing.Point(663, 3);
+            this.Manual_FileBrowse_Button.Name = "Manual_FileBrowse_Button";
+            this.Manual_FileBrowse_Button.Size = new System.Drawing.Size(54, 23);
+            this.Manual_FileBrowse_Button.TabIndex = 1;
+            this.Manual_FileBrowse_Button.Text = "参照";
+            this.Manual_FileBrowse_Button.UseVisualStyleBackColor = true;
+            this.Manual_FileBrowse_Button.Click += new System.EventHandler(this.Manual_FileBrowse_Button_Click);
+            // 
+            // MapEdit_TabPage
+            // 
+            this.MapEdit_TabPage.Controls.Add(this.dataGridView1);
+            this.MapEdit_TabPage.Location = new System.Drawing.Point(4, 22);
+            this.MapEdit_TabPage.Name = "MapEdit_TabPage";
+            this.MapEdit_TabPage.Size = new System.Drawing.Size(792, 424);
+            this.MapEdit_TabPage.TabIndex = 2;
+            this.MapEdit_TabPage.Text = "MAP編集";
+            this.MapEdit_TabPage.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(8, 34);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 21;
+            this.dataGridView1.Size = new System.Drawing.Size(427, 382);
+            this.dataGridView1.TabIndex = 0;
             // 
             // Form1
             // 
@@ -282,11 +283,11 @@ namespace CraftopiaSavefileEditor
             this.ConvertJson2Ocs_Panel.ResumeLayout(false);
             this.ConvertJson2Ocs_Panel.PerformLayout();
             this.Manual_TabPage.ResumeLayout(false);
-            this.MapEdit_TabPage.ResumeLayout(false);
-            this.MapEdit_TabPage.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            this.MapEdit_TabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -309,7 +310,7 @@ namespace CraftopiaSavefileEditor
         private ScintillaNET.Scintilla Manual_Scintilla;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 
