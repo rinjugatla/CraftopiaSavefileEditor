@@ -56,3 +56,6 @@ https://github.com/VPKSoft/ScintillaNET/blob/master/LICENSE
 
 * ScintillaNET-FindReplaceDialog
 https://github.com/VPKSoft/ScintillaNET-FindReplaceDialog/blob/master/LICENSE
+
+* Jil
+https://github.com/kevin-montrose/Jil/blob/master/LICENSE
