@@ -76,7 +76,7 @@ namespace CraftopiaSavefileEditor.View
             this.ConvertOcsJson_TabPage.Location = new System.Drawing.Point(4, 22);
             this.ConvertOcsJson_TabPage.Name = "ConvertOcsJson_TabPage";
             this.ConvertOcsJson_TabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.ConvertOcsJson_TabPage.Size = new System.Drawing.Size(858, 424);
+            this.ConvertOcsJson_TabPage.Size = new System.Drawing.Size(956, 424);
             this.ConvertOcsJson_TabPage.TabIndex = 0;
             this.ConvertOcsJson_TabPage.Text = "OCS<->JSON変換";
             this.ConvertOcsJson_TabPage.UseVisualStyleBackColor = true;
@@ -96,7 +96,7 @@ namespace CraftopiaSavefileEditor.View
             this.OcsJsonConvert_TableLayoutPanel.Name = "OcsJsonConvert_TableLayoutPanel";
             this.OcsJsonConvert_TableLayoutPanel.RowCount = 1;
             this.OcsJsonConvert_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.OcsJsonConvert_TableLayoutPanel.Size = new System.Drawing.Size(852, 418);
+            this.OcsJsonConvert_TableLayoutPanel.Size = new System.Drawing.Size(950, 418);
             this.OcsJsonConvert_TableLayoutPanel.TabIndex = 0;
             // 
             // ConvertOcs2Json_Panel
@@ -107,7 +107,7 @@ namespace CraftopiaSavefileEditor.View
             this.ConvertOcs2Json_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ConvertOcs2Json_Panel.Location = new System.Drawing.Point(6, 6);
             this.ConvertOcs2Json_Panel.Name = "ConvertOcs2Json_Panel";
-            this.ConvertOcs2Json_Panel.Size = new System.Drawing.Size(415, 406);
+            this.ConvertOcs2Json_Panel.Size = new System.Drawing.Size(464, 406);
             this.ConvertOcs2Json_Panel.TabIndex = 0;
             this.ConvertOcs2Json_Panel.DragDrop += new System.Windows.Forms.DragEventHandler(this.ConvertOcs2Json_Panel_DragDrop);
             this.ConvertOcs2Json_Panel.DragEnter += new System.Windows.Forms.DragEventHandler(this.Panel_DragEnter);
@@ -117,7 +117,7 @@ namespace CraftopiaSavefileEditor.View
             this.ConvertOcs2Json_Label.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ConvertOcs2Json_Label.AutoSize = true;
             this.ConvertOcs2Json_Label.Font = new System.Drawing.Font("MS UI Gothic", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.ConvertOcs2Json_Label.Location = new System.Drawing.Point(92, 159);
+            this.ConvertOcs2Json_Label.Location = new System.Drawing.Point(117, 159);
             this.ConvertOcs2Json_Label.Name = "ConvertOcs2Json_Label";
             this.ConvertOcs2Json_Label.Size = new System.Drawing.Size(228, 40);
             this.ConvertOcs2Json_Label.TabIndex = 0;
@@ -129,9 +129,9 @@ namespace CraftopiaSavefileEditor.View
             this.ConvertJson2Ocs_Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ConvertJson2Ocs_Panel.Controls.Add(this.ConvertJson2Ocs_Label);
             this.ConvertJson2Ocs_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ConvertJson2Ocs_Panel.Location = new System.Drawing.Point(430, 6);
+            this.ConvertJson2Ocs_Panel.Location = new System.Drawing.Point(479, 6);
             this.ConvertJson2Ocs_Panel.Name = "ConvertJson2Ocs_Panel";
-            this.ConvertJson2Ocs_Panel.Size = new System.Drawing.Size(416, 406);
+            this.ConvertJson2Ocs_Panel.Size = new System.Drawing.Size(465, 406);
             this.ConvertJson2Ocs_Panel.TabIndex = 0;
             this.ConvertJson2Ocs_Panel.DragDrop += new System.Windows.Forms.DragEventHandler(this.ConvertJson2Ocs_Panel_DragDrop);
             this.ConvertJson2Ocs_Panel.DragEnter += new System.Windows.Forms.DragEventHandler(this.Panel_DragEnter);
@@ -141,7 +141,7 @@ namespace CraftopiaSavefileEditor.View
             this.ConvertJson2Ocs_Label.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ConvertJson2Ocs_Label.AutoSize = true;
             this.ConvertJson2Ocs_Label.Font = new System.Drawing.Font("MS UI Gothic", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.ConvertJson2Ocs_Label.Location = new System.Drawing.Point(112, 159);
+            this.ConvertJson2Ocs_Label.Location = new System.Drawing.Point(136, 159);
             this.ConvertJson2Ocs_Label.Name = "ConvertJson2Ocs_Label";
             this.ConvertJson2Ocs_Label.Size = new System.Drawing.Size(207, 40);
             this.ConvertJson2Ocs_Label.TabIndex = 0;
@@ -153,7 +153,7 @@ namespace CraftopiaSavefileEditor.View
             this.Manual_TabPage.Location = new System.Drawing.Point(4, 22);
             this.Manual_TabPage.Name = "Manual_TabPage";
             this.Manual_TabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.Manual_TabPage.Size = new System.Drawing.Size(858, 424);
+            this.Manual_TabPage.Size = new System.Drawing.Size(956, 424);
             this.Manual_TabPage.TabIndex = 1;
             this.Manual_TabPage.Text = "OCS手動編集";
             this.Manual_TabPage.UseVisualStyleBackColor = true;
@@ -170,7 +170,7 @@ namespace CraftopiaSavefileEditor.View
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(852, 418);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(950, 418);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
             // Manual_Scintilla
@@ -182,7 +182,7 @@ namespace CraftopiaSavefileEditor.View
             this.Manual_Scintilla.Location = new System.Drawing.Point(3, 38);
             this.Manual_Scintilla.Name = "Manual_Scintilla";
             this.Manual_Scintilla.ScrollWidth = 49;
-            this.Manual_Scintilla.Size = new System.Drawing.Size(846, 377);
+            this.Manual_Scintilla.Size = new System.Drawing.Size(944, 377);
             this.Manual_Scintilla.TabIndents = true;
             this.Manual_Scintilla.TabIndex = 4;
             this.Manual_Scintilla.UseRightToLeftReadingLayout = false;
@@ -206,20 +206,21 @@ namespace CraftopiaSavefileEditor.View
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(846, 29);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(944, 29);
             this.tableLayoutPanel2.TabIndex = 5;
             // 
             // Manual_Filepath_TextBox
             // 
+            this.Manual_Filepath_TextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Manual_Filepath_TextBox.Location = new System.Drawing.Point(5, 5);
             this.Manual_Filepath_TextBox.Margin = new System.Windows.Forms.Padding(5);
             this.Manual_Filepath_TextBox.Name = "Manual_Filepath_TextBox";
-            this.Manual_Filepath_TextBox.Size = new System.Drawing.Size(590, 19);
+            this.Manual_Filepath_TextBox.Size = new System.Drawing.Size(754, 19);
             this.Manual_Filepath_TextBox.TabIndex = 0;
             // 
             // Manual_FileSave_Button
             // 
-            this.Manual_FileSave_Button.Location = new System.Drawing.Point(789, 3);
+            this.Manual_FileSave_Button.Location = new System.Drawing.Point(887, 3);
             this.Manual_FileSave_Button.Name = "Manual_FileSave_Button";
             this.Manual_FileSave_Button.Size = new System.Drawing.Size(54, 23);
             this.Manual_FileSave_Button.TabIndex = 1;
@@ -229,7 +230,7 @@ namespace CraftopiaSavefileEditor.View
             // 
             // Manual_Open_Button
             // 
-            this.Manual_Open_Button.Location = new System.Drawing.Point(669, 3);
+            this.Manual_Open_Button.Location = new System.Drawing.Point(767, 3);
             this.Manual_Open_Button.Name = "Manual_Open_Button";
             this.Manual_Open_Button.Size = new System.Drawing.Size(54, 23);
             this.Manual_Open_Button.TabIndex = 1;
@@ -239,7 +240,7 @@ namespace CraftopiaSavefileEditor.View
             // 
             // Manual_FileBrowse_Button
             // 
-            this.Manual_FileBrowse_Button.Location = new System.Drawing.Point(729, 3);
+            this.Manual_FileBrowse_Button.Location = new System.Drawing.Point(827, 3);
             this.Manual_FileBrowse_Button.Name = "Manual_FileBrowse_Button";
             this.Manual_FileBrowse_Button.Size = new System.Drawing.Size(54, 23);
             this.Manual_FileBrowse_Button.TabIndex = 1;
