@@ -46,6 +46,12 @@ namespace CraftopiaSavefileEditor.View
             this.Manual_FileBrowse_Button = new System.Windows.Forms.Button();
             this.MapEdit_TabPage = new System.Windows.Forms.TabPage();
             this.MapEdit_DataGridView = new System.Windows.Forms.DataGridView();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.MapEdit_Filepath_TextBox = new System.Windows.Forms.TextBox();
+            this.MapEdit_Save_Button = new System.Windows.Forms.Button();
+            this.MapEdit_Open_Button = new System.Windows.Forms.Button();
+            this.MapEdit_Browse_Button = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.ConvertOcsJson_TabPage.SuspendLayout();
             this.OcsJsonConvert_TableLayoutPanel.SuspendLayout();
@@ -56,6 +62,8 @@ namespace CraftopiaSavefileEditor.View
             this.tableLayoutPanel2.SuspendLayout();
             this.MapEdit_TabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MapEdit_DataGridView)).BeginInit();
+            this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -250,7 +258,7 @@ namespace CraftopiaSavefileEditor.View
             // 
             // MapEdit_TabPage
             // 
-            this.MapEdit_TabPage.Controls.Add(this.MapEdit_DataGridView);
+            this.MapEdit_TabPage.Controls.Add(this.tableLayoutPanel3);
             this.MapEdit_TabPage.Location = new System.Drawing.Point(4, 22);
             this.MapEdit_TabPage.Name = "MapEdit_TabPage";
             this.MapEdit_TabPage.Size = new System.Drawing.Size(956, 424);
@@ -263,12 +271,86 @@ namespace CraftopiaSavefileEditor.View
             this.MapEdit_DataGridView.AllowUserToAddRows = false;
             this.MapEdit_DataGridView.AllowUserToDeleteRows = false;
             this.MapEdit_DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.MapEdit_DataGridView.Location = new System.Drawing.Point(8, 21);
+            this.MapEdit_DataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MapEdit_DataGridView.Location = new System.Drawing.Point(3, 38);
             this.MapEdit_DataGridView.Name = "MapEdit_DataGridView";
             this.MapEdit_DataGridView.RowTemplate.Height = 21;
-            this.MapEdit_DataGridView.Size = new System.Drawing.Size(940, 395);
+            this.MapEdit_DataGridView.Size = new System.Drawing.Size(950, 383);
             this.MapEdit_DataGridView.TabIndex = 0;
             this.MapEdit_DataGridView.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.MapEdit_DataGridView_RowPostPaint);
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.MapEdit_DataGridView, 0, 1);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(956, 424);
+            this.tableLayoutPanel3.TabIndex = 6;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 4;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel4.Controls.Add(this.MapEdit_Filepath_TextBox, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.MapEdit_Save_Button, 3, 0);
+            this.tableLayoutPanel4.Controls.Add(this.MapEdit_Open_Button, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.MapEdit_Browse_Button, 2, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(950, 29);
+            this.tableLayoutPanel4.TabIndex = 5;
+            // 
+            // MapEdit_Filepath_TextBox
+            // 
+            this.MapEdit_Filepath_TextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MapEdit_Filepath_TextBox.Location = new System.Drawing.Point(5, 5);
+            this.MapEdit_Filepath_TextBox.Margin = new System.Windows.Forms.Padding(5);
+            this.MapEdit_Filepath_TextBox.Name = "MapEdit_Filepath_TextBox";
+            this.MapEdit_Filepath_TextBox.Size = new System.Drawing.Size(760, 19);
+            this.MapEdit_Filepath_TextBox.TabIndex = 0;
+            // 
+            // MapEdit_Save_Button
+            // 
+            this.MapEdit_Save_Button.Location = new System.Drawing.Point(893, 3);
+            this.MapEdit_Save_Button.Name = "MapEdit_Save_Button";
+            this.MapEdit_Save_Button.Size = new System.Drawing.Size(54, 23);
+            this.MapEdit_Save_Button.TabIndex = 1;
+            this.MapEdit_Save_Button.Text = "保存";
+            this.MapEdit_Save_Button.UseVisualStyleBackColor = true;
+            this.MapEdit_Save_Button.Click += new System.EventHandler(this.MapEdit_Save_Button_Click);
+            // 
+            // MapEdit_Open_Button
+            // 
+            this.MapEdit_Open_Button.Location = new System.Drawing.Point(773, 3);
+            this.MapEdit_Open_Button.Name = "MapEdit_Open_Button";
+            this.MapEdit_Open_Button.Size = new System.Drawing.Size(54, 23);
+            this.MapEdit_Open_Button.TabIndex = 1;
+            this.MapEdit_Open_Button.Text = "開く";
+            this.MapEdit_Open_Button.UseVisualStyleBackColor = true;
+            this.MapEdit_Open_Button.Click += new System.EventHandler(this.MapEdit_Open_Button_Click);
+            // 
+            // MapEdit_Browse_Button
+            // 
+            this.MapEdit_Browse_Button.Location = new System.Drawing.Point(833, 3);
+            this.MapEdit_Browse_Button.Name = "MapEdit_Browse_Button";
+            this.MapEdit_Browse_Button.Size = new System.Drawing.Size(54, 23);
+            this.MapEdit_Browse_Button.TabIndex = 1;
+            this.MapEdit_Browse_Button.Text = "参照";
+            this.MapEdit_Browse_Button.UseVisualStyleBackColor = true;
+            this.MapEdit_Browse_Button.Click += new System.EventHandler(this.MapEdit_Browse_Button_Click);
             // 
             // MainForm
             // 
@@ -292,6 +374,9 @@ namespace CraftopiaSavefileEditor.View
             this.tableLayoutPanel2.PerformLayout();
             this.MapEdit_TabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MapEdit_DataGridView)).EndInit();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -315,6 +400,12 @@ namespace CraftopiaSavefileEditor.View
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.DataGridView MapEdit_DataGridView;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.TextBox MapEdit_Filepath_TextBox;
+        private System.Windows.Forms.Button MapEdit_Save_Button;
+        private System.Windows.Forms.Button MapEdit_Open_Button;
+        private System.Windows.Forms.Button MapEdit_Browse_Button;
     }
 }
 

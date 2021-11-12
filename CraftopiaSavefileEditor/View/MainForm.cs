@@ -8,6 +8,8 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CraftopiaSavefileEditor.Controller;
+using CraftopiaSavefileEditor.Model;
+using Jil;
 using ScintillaNET;
 
 namespace CraftopiaSavefileEditor.View
@@ -330,7 +332,7 @@ namespace CraftopiaSavefileEditor.View
                     ValueMember = "Self"
                 };
 
-                column.DefaultCellStyle.NullValue = "未開放";
+                column.DefaultCellStyle.NullValue = "";
                 foreach (var piece in validMapPieces) column.Items.Add(piece);
                 
                 columns.Add(column);
@@ -381,6 +383,81 @@ namespace CraftopiaSavefileEditor.View
                     TextFormatFlags.Right | TextFormatFlags.VerticalCenter);
             }
         }
+
+        WorldModel WorldModel = null;
+
+        /// <summary>
+        /// WorldEditModelからDGVを更新
+        /// </summary>
+        private void UpdateWorldEdit_DataGridView()
+        {
+            int colmunNumber = 11;
+
+            // 左上から順に埋めていく
+            var islandRows = WorldModel.WorldSave.Value.IslandInfos.Select((v, i) => new { v, i })
+                .GroupBy(x => x.i / colmunNumber)
+                .Select(g => g.Select(x => x.v));
+
+            foreach (var row in islandRows.Select((v, y) => new { v, y }))
+            {
+                foreach (var info in row.v.Select((v, x) => new { v, x }))
+                {
+                    MapEdit_DataGridView[info.x, row.y].Value = MapPiece.GetMapPieceByPieceID(info.v.MapPieceId);
+                }
+            }
+        }
+
+        private void MapEdit_Open_Button_Click(object sender, EventArgs e)
+        {
+            string path = Manual_Filepath_TextBox.Text;
+            if (path == "" || !File.Exists(path))
+            {
+                MessageBox.Show("ファイルが存在しません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            if (Path.GetExtension(path) != ".ocs")
+            {
+                MessageBox.Show("ocs以外のファイルが選択されています。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            string json = OcsController.LoadOcs(path);
+            WorldModel = JSON.Deserialize<WorldModel>(json);
+            UpdateWorldEdit_DataGridView();
+        }
+
+        private void MapEdit_Browse_Button_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog()
+            {
+                Filter = "OCSファイル(*.ocs)|*.ocs",
+                Title = "OCSファイルを選択",
+                RestoreDirectory = true
+            };
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                string path = ofd.FileName;
+                MapEdit_Filepath_TextBox.Text = path;
+                string json = OcsController.LoadOcs(path);
+                WorldModel = JSON.Deserialize<WorldModel>(json);
+                UpdateWorldEdit_DataGridView();
+            }
+        }
+
+        /// <summary>
+        /// DGVの内容からWorld.ocsを保存
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MapEdit_Save_Button_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
         #endregion
+
+
     }
 }
