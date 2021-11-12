@@ -409,7 +409,7 @@ namespace CraftopiaSavefileEditor.View
 
         private void MapEdit_Open_Button_Click(object sender, EventArgs e)
         {
-            string path = Manual_Filepath_TextBox.Text;
+            string path = MapEdit_Filepath_TextBox.Text;
             if (path == "" || !File.Exists(path))
             {
                 MessageBox.Show("ファイルが存在しません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Information);
