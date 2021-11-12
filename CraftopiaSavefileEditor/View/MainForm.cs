@@ -415,9 +415,14 @@ namespace CraftopiaSavefileEditor.View
                 MessageBox.Show("ファイルが存在しません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            if (Path.GetExtension(path) != ".ocs")
+            else if (Path.GetExtension(path) != ".ocs")
             {
                 MessageBox.Show("ocs以外のファイルが選択されています。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            else if (!path.StartsWith("World"))
+            {
+                MessageBox.Show("World以外のファイルが選択されています。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
