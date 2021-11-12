@@ -15,6 +15,8 @@ namespace CraftopiaSavefileEditor.View
     public partial class MainForm : Form
     {
 
+        private MapPieceController MapPiece;
+
         public MainForm()
         {
             InitializeComponent();
@@ -25,13 +27,20 @@ namespace CraftopiaSavefileEditor.View
             this.Text += $" {this.ProductVersion}";
             this.MinimumSize = this.Size;
 
+            Init();
+
             // https://github.com/robinrodricks/ScintillaNET.Demo/blob/b5f0e74bce15b8f18d0ffd5d5c7a8ba382162ff1/ScintillaNET.Demo/MainForm.cs
             InitHotkeys();
             InitSyntaxColoring();
             InitNumberMargin();
             InitCodeFolding();
 
-            InitMapDataGridView();
+            InitMapEditDataGridView();
+        }
+
+        private void Init()
+        {
+            MapPiece = new MapPieceController();
         }
 
         #region Scintilla
@@ -295,18 +304,83 @@ namespace CraftopiaSavefileEditor.View
         }
         #endregion
 
-        private void InitMapDataGridView()
+        #region MAP編集
+        private void InitMapEditDataGridView()
         {
+            // カラムの自動生成無効化
+            MapEdit_DataGridView.AutoGenerateColumns = false;
+
             IEnumerable<int> headers = Enumerable.Range(1, 11);
-            List<DataGridViewTextBoxColumn> columns = new List<DataGridViewTextBoxColumn>();
-
-
+            DataTable table = new DataTable("Map");
             foreach (var header in headers)
             {
-                columns.Add(new DataGridViewTextBoxColumn() {  Name = $"Column{header}", HeaderText = $"{header}"});
+                table.Columns.Add(new DataColumn($"{header}", typeof(string)));
             }
 
-            dataGridView1.Columns.AddRange(columns.ToArray());
+            // Windows フォームの DataGridViewComboBoxCell ドロップダウン リストのオブジェクトにアクセスする
+            // https://docs.microsoft.com/ja-jp/dotnet/desktop/winforms/controls/access-objects-in-a-wf-datagridviewcomboboxcell-drop-down-list?view=netframeworkdesktop-4.8
+            var validMapPieces = MapPiece.GetValidMapPieces();
+            List<DataGridViewComboBoxColumn> columns = new List<DataGridViewComboBoxColumn>();
+            foreach (var header in headers)
+            {
+                DataGridViewComboBoxColumn column = new DataGridViewComboBoxColumn() { 
+                    Name = $"{header}",
+                    DataPropertyName = "ID",
+                    DisplayMember = "Name",
+                    ValueMember = "Self"
+                };
+
+                column.DefaultCellStyle.NullValue = "未開放";
+                foreach (var piece in validMapPieces) column.Items.Add(piece);
+                
+                columns.Add(column);
+                MapEdit_DataGridView.Columns.Add(column);
+            }
+            
+            MapEdit_DataGridView.DataSource = table;
+            
+            foreach (var header in headers)
+            {
+                DataRow row = table.NewRow();
+                table.Rows.Add();
+            }
+
+            MapEdit_DataGridView.DataSource = table;
+            foreach (DataGridViewColumn column in MapEdit_DataGridView.Columns)
+            {
+                column.Width = 80;
+            }
+
+            //dataGridView1.Columns.AddRange(columns.ToArray());
         }
+
+        /// <summary>
+        /// DGV行ヘッダ描画
+        /// </summary>
+        /// <remarks>
+        /// https://dobon.net/vb/dotnet/datagridview/drawrownumber.html
+        /// </remarks>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MapEdit_DataGridView_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            DataGridView dgv = (DataGridView)sender;
+            if (dgv.RowHeadersVisible)
+            {
+                //行番号を描画する範囲を決定する
+                Rectangle rect = new Rectangle(
+                    e.RowBounds.Left, e.RowBounds.Top,
+                    dgv.RowHeadersWidth, e.RowBounds.Height);
+                rect.Inflate(-2, -2);
+                //行番号を描画する
+                TextRenderer.DrawText(e.Graphics,
+                    (e.RowIndex + 1).ToString(),
+                    e.InheritedRowStyle.Font,
+                    rect,
+                    e.InheritedRowStyle.ForeColor,
+                    TextFormatFlags.Right | TextFormatFlags.VerticalCenter);
+            }
+        }
+        #endregion
     }
 }

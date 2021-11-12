@@ -54,7 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\MapPieceController.cs" />
     <Compile Include="Controller\OcsController.cs" />
+    <Compile Include="Model\MapPieceModel.cs" />
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
