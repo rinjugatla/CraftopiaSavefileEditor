@@ -430,8 +430,8 @@ namespace CraftopiaSavefileEditor.View
         {
             OpenFileDialog ofd = new OpenFileDialog()
             {
-                Filter = "OCSファイル(*.ocs)|*.ocs",
-                Title = "OCSファイルを選択",
+                Filter = "Worldファイル(World*.ocs)|World*.ocs",
+                Title = "Worldファイルを選択",
                 RestoreDirectory = true
             };
 
