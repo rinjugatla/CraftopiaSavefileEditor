@@ -36,6 +36,12 @@
     <Reference Include="Jil, Version=2.17.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Jil.2.17.0\lib\net45\Jil.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack-Core.1.1.1\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack-Shell.1.1.1\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    </Reference>
     <Reference Include="ScintillaNET, Version=3.6.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\unofficial.ScintillaNET.3.8.7\lib\net40\ScintillaNET.dll</HintPath>
@@ -63,6 +69,7 @@
   <ItemGroup>
     <Compile Include="Controller\MapPieceController.cs" />
     <Compile Include="Controller\OcsController.cs" />
+    <Compile Include="Controller\WorldController.cs" />
     <Compile Include="Model\MapPieceModel.cs" />
     <Compile Include="Model\WorldModel.cs" />
     <Compile Include="View\MainForm.cs">

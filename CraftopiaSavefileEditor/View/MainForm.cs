@@ -10,14 +10,15 @@ using System.Windows.Forms;
 using CraftopiaSavefileEditor.Controller;
 using CraftopiaSavefileEditor.Model;
 using Jil;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using ScintillaNET;
 
 namespace CraftopiaSavefileEditor.View
 {
     public partial class MainForm : Form
     {
-
         private MapPieceController MapPiece;
+        private WorldController World;
 
         public MainForm()
         {
@@ -339,8 +340,6 @@ namespace CraftopiaSavefileEditor.View
                 MapEdit_DataGridView.Columns.Add(column);
             }
             
-            MapEdit_DataGridView.DataSource = table;
-            
             foreach (var header in headers)
             {
                 DataRow row = table.NewRow();
@@ -348,6 +347,7 @@ namespace CraftopiaSavefileEditor.View
             }
 
             MapEdit_DataGridView.DataSource = table;
+            
             foreach (DataGridViewColumn column in MapEdit_DataGridView.Columns)
             {
                 column.Width = 80;
@@ -384,70 +384,40 @@ namespace CraftopiaSavefileEditor.View
             }
         }
 
-        WorldModel WorldModel = null;
-
-        /// <summary>
-        /// WorldEditModelからDGVを更新
-        /// </summary>
-        private void UpdateWorldEdit_DataGridView()
-        {
-            int colmunNumber = 11;
-
-            // 左上から順に埋めていく
-            var islandRows = WorldModel.WorldSave.Value.IslandInfos.Select((v, i) => new { v, i })
-                .GroupBy(x => x.i / colmunNumber)
-                .Select(g => g.Select(x => x.v));
-
-            foreach (var row in islandRows.Select((v, y) => new { v, y }))
-            {
-                foreach (var info in row.v.Select((v, x) => new { v, x }))
-                {
-                    MapEdit_DataGridView[info.x, row.y].Value = MapPiece.GetMapPieceByPieceID(info.v.MapPieceId);
-                }
-            }
-        }
-
         private void MapEdit_Open_Button_Click(object sender, EventArgs e)
         {
-            string path = MapEdit_Filepath_TextBox.Text;
-            if (path == "" || !File.Exists(path))
+            string path = MapEdit_Directorypath_TextBox.Text;
+            if (path == "" || !Directory.Exists(path))
             {
-                MessageBox.Show("ファイルが存在しません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-            else if (Path.GetExtension(path) != ".ocs")
-            {
-                MessageBox.Show("ocs以外のファイルが選択されています。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-            else if (!path.StartsWith("World"))
-            {
-                MessageBox.Show("World以外のファイルが選択されています。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("フォルダが存在しません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            string json = OcsController.LoadOcs(path);
-            WorldModel = JSON.Deserialize<WorldModel>(json);
-            UpdateWorldEdit_DataGridView();
+            InitWorld(path);
         }
 
         private void MapEdit_Browse_Button_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog()
+            CommonOpenFileDialog cofd = new CommonOpenFileDialog()
             {
-                Filter = "Worldファイル(World*.ocs)|World*.ocs",
-                Title = "Worldファイルを選択",
-                RestoreDirectory = true
+                Title = "Worldsフォルダを選択",
+                RestoreDirectory = true,
+                IsFolderPicker = true
             };
 
-            if (ofd.ShowDialog() == DialogResult.OK)
+            if (cofd.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                string path = ofd.FileName;
-                MapEdit_Filepath_TextBox.Text = path;
-                string json = OcsController.LoadOcs(path);
-                WorldModel = JSON.Deserialize<WorldModel>(json);
-                UpdateWorldEdit_DataGridView();
+                string path = cofd.FileName;
+                MapEdit_Directorypath_TextBox.Text = path;
+                InitWorld(path);
             }
+        }
+
+        private void InitWorld(string directoryPath)
+        {
+            World = new WorldController(directoryPath);
+            var names = World.GetWorldNames();
+            MapEdit_ListBox.Items.AddRange(names.ToArray());
         }
 
         /// <summary>
@@ -460,7 +430,41 @@ namespace CraftopiaSavefileEditor.View
 
         }
 
-        
+        /// <summary>
+        /// 選択したワールド情報を表示
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MapEdit_ListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListBox listBox = (ListBox)sender;
+            int index = listBox.SelectedIndex;
+            if (index == -1)
+                return;
+            
+            WorldModel world = World.Worlds[index];
+            UpdateWorldEdit_DataGridView(world);
+        }
+
+        /// <summary>
+        /// WorldEditModelからDGVを更新
+        /// </summary>
+        private void UpdateWorldEdit_DataGridView(WorldModel world)
+        {
+            // 左上から順に埋めていく
+            int colmunNumber = MapEdit_DataGridView.Columns.Count;
+            var islandRows = world.WorldSave.Value.IslandInfos.Select((v, i) => new { v, i })
+                .GroupBy(x => x.i / colmunNumber)
+                .Select(g => g.Select(x => x.v));
+
+            foreach (var row in islandRows.Select((v, y) => new { v, y }))
+            {
+                foreach (var info in row.v.Select((v, x) => new { v, x }))
+                {
+                    MapEdit_DataGridView[info.x, row.y].Value = MapPiece.GetMapPieceByPieceID(info.v.MapPieceId);
+                }
+            }
+        }
         #endregion
 
 

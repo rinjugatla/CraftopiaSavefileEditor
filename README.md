@@ -59,3 +59,6 @@ https://github.com/VPKSoft/ScintillaNET-FindReplaceDialog/blob/master/LICENSE
 
 * Jil
 https://github.com/kevin-montrose/Jil/blob/master/LICENSE
+
+* Windows-API-Code-Pack-1.1
+https://github.com/aybe/Windows-API-Code-Pack-1.1/blob/master/LICENCE
