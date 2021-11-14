@@ -446,7 +446,7 @@ namespace CraftopiaSavefileEditor.View
             if (index == -1)
                 return;
             
-            WorldModel world = WorldController.Worlds[index];
+            WorldModel world = WorldController.GetWorld(false, index);
             UpdateWorldEdit_DataGridView(world);
         }
 
