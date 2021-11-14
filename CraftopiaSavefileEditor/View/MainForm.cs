@@ -465,6 +465,21 @@ namespace CraftopiaSavefileEditor.View
                 }
             }
         }
+
+        /// <summary>
+        /// ComboBoxをワンクリックで開く
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MapEdit_DataGridView_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView dgv = (DataGridView)sender;
+            if (e.ColumnIndex < 0)
+                return;
+
+            if (dgv.Columns[e.ColumnIndex] is DataGridViewComboBoxColumn)
+                SendKeys.Send("{F4}");
+        }
         #endregion
 
 

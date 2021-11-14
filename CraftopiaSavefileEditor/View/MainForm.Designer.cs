@@ -370,6 +370,7 @@ namespace CraftopiaSavefileEditor.View
             this.MapEdit_DataGridView.RowTemplate.Height = 21;
             this.MapEdit_DataGridView.Size = new System.Drawing.Size(744, 377);
             this.MapEdit_DataGridView.TabIndex = 2;
+            this.MapEdit_DataGridView.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.MapEdit_DataGridView_CellEnter);
             // 
             // MapEdit_ListBox
             // 
