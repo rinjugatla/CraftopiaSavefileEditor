@@ -42,6 +42,11 @@ namespace CraftopiaSavefileEditor.Model
             get { return this; }
         }
 
+        public override string ToString()
+        {
+            return Name;
+        }
+
         /// <summary>
         /// CSV読み取り結果からモデル情報を作成
         /// </summary>
