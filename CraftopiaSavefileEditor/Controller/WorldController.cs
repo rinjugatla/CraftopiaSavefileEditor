@@ -19,6 +19,14 @@ namespace CraftopiaSavefileEditor.Controller
         /// 変更用
         /// </summary>
         public List<WorldModel> ModifyWorlds { get; private set; }
+        /// <summary>
+        /// 島横幅
+        /// </summary>
+        private const int IslandColumnNumber = 11;
+        /// <summary>
+        /// 島縦幅
+        /// </summary>
+        private const int IslandRowNumber = 11;
 
         /// <summary>
         /// 
@@ -64,13 +72,41 @@ namespace CraftopiaSavefileEditor.Controller
         /// World情報取得
         /// </summary>
         /// <param name="isOrigin">初期値で取得するか</param>
-        /// <param name="index"></param>
+        /// <param name="worldIndex"></param>
         /// <returns></returns>
-        public WorldModel GetWorld(bool isOrigin, int index)
+        public WorldModel GetWorld(bool isOrigin, int worldIndex)
         {
             if (isOrigin)
-                return OriginWorlds[index];
-            return ModifyWorlds[index];
+                return OriginWorlds[worldIndex];
+            return ModifyWorlds[worldIndex];
+        }
+
+        /// <summary>
+        /// 島情報取得
+        /// </summary>
+        /// <param name="isOrigin">初期値で取得するか</param>
+        /// <param name="worldIndex">ワールド番号</param>
+        /// <param name="column">列</param>
+        /// <param name="row">行</param>
+        /// <returns></returns>
+        public IslandInfo GetIsland(bool isOrigin, int worldIndex, int column, int row)
+        {
+            int islandIndex = column + row * IslandColumnNumber;
+            return GetIsland(isOrigin, worldIndex, islandIndex);
+        }
+
+        /// <summary>
+        /// 島情報取得
+        /// </summary>
+        /// <param name="isOrigin">初期値で取得するか</param>
+        /// <param name="worldIndex">ワールド番号</param>
+        /// <param name="islandIndex">島番号</param>
+        /// <returns></returns>
+        public IslandInfo GetIsland(bool isOrigin, int worldIndex, int islandIndex)
+        {
+            if (isOrigin)
+                return OriginWorlds[worldIndex].WorldSave.Value.IslandInfos[islandIndex];
+            return ModifyWorlds[worldIndex].WorldSave.Value.IslandInfos[islandIndex];
         }
     }
 }
