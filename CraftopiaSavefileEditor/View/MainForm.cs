@@ -17,8 +17,8 @@ namespace CraftopiaSavefileEditor.View
 {
     public partial class MainForm : Form
     {
-        private MapPieceController MapPiece;
-        private WorldController World;
+        private MapPieceController MapPieceController;
+        private WorldController WorldController;
 
         public MainForm()
         {
@@ -43,7 +43,7 @@ namespace CraftopiaSavefileEditor.View
 
         private void Init()
         {
-            MapPiece = new MapPieceController();
+            MapPieceController = new MapPieceController();
         }
 
         #region Scintilla
@@ -322,7 +322,7 @@ namespace CraftopiaSavefileEditor.View
 
             // Windows フォームの DataGridViewComboBoxCell ドロップダウン リストのオブジェクトにアクセスする
             // https://docs.microsoft.com/ja-jp/dotnet/desktop/winforms/controls/access-objects-in-a-wf-datagridviewcomboboxcell-drop-down-list?view=netframeworkdesktop-4.8
-            var validMapPieces = MapPiece.GetValidMapPieces();
+            var validMapPieces = MapPieceController.GetValidMapPieces();
             List<DataGridViewComboBoxColumn> columns = new List<DataGridViewComboBoxColumn>();
             foreach (var header in headers)
             {
@@ -393,7 +393,7 @@ namespace CraftopiaSavefileEditor.View
                 return;
             }
 
-            InitWorld(path);
+            UpdateWorldController(path);
         }
 
         private void MapEdit_Browse_Button_Click(object sender, EventArgs e)
@@ -409,14 +409,18 @@ namespace CraftopiaSavefileEditor.View
             {
                 string path = cofd.FileName;
                 MapEdit_Directorypath_TextBox.Text = path;
-                InitWorld(path);
+                UpdateWorldController(path);
             }
         }
 
-        private void InitWorld(string directoryPath)
+        /// <summary>
+        /// Worldsフォルダ内のWorld.ocsファイルを取得
+        /// </summary>
+        /// <param name="directoryPath"></param>
+        private void UpdateWorldController(string directoryPath)
         {
-            World = new WorldController(directoryPath);
-            var names = World.GetWorldNames();
+            WorldController = new WorldController(directoryPath);
+            var names = WorldController.GetWorldNames();
             MapEdit_ListBox.Items.AddRange(names.ToArray());
         }
 
@@ -442,7 +446,7 @@ namespace CraftopiaSavefileEditor.View
             if (index == -1)
                 return;
             
-            WorldModel world = World.Worlds[index];
+            WorldModel world = WorldController.Worlds[index];
             UpdateWorldEdit_DataGridView(world);
         }
 
@@ -461,7 +465,7 @@ namespace CraftopiaSavefileEditor.View
             {
                 foreach (var info in row.v.Select((v, x) => new { v, x }))
                 {
-                    MapEdit_DataGridView[info.x, row.y].Value = MapPiece.GetMapPieceByPieceID(info.v.MapPieceId);
+                    MapEdit_DataGridView[info.x, row.y].Value = MapPieceController.GetMapPieceByPieceID(info.v.MapPieceId);
                 }
             }
         }
