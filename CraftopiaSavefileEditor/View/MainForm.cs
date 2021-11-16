@@ -19,6 +19,7 @@ namespace CraftopiaSavefileEditor.View
     {
         private MapPieceController MapPieceController;
         private WorldController WorldController;
+        private int SelectedWorldIndex = -1;
 
         public MainForm()
         {
@@ -326,11 +327,12 @@ namespace CraftopiaSavefileEditor.View
             List<DataGridViewComboBoxColumn> columns = new List<DataGridViewComboBoxColumn>();
             foreach (var header in headers)
             {
-                DataGridViewComboBoxColumn column = new DataGridViewComboBoxColumn() { 
+                DataGridViewComboBoxColumn column = new DataGridViewComboBoxColumn() {
                     Name = $"{header}",
                     DataPropertyName = "ID",
                     DisplayMember = "Name",
-                    ValueMember = "Self"
+                    ValueMember = "Self",
+                    FlatStyle = FlatStyle.Flat,
                 };
 
                 column.DefaultCellStyle.NullValue = "";
@@ -445,13 +447,14 @@ namespace CraftopiaSavefileEditor.View
             int index = listBox.SelectedIndex;
             if (index == -1)
                 return;
-            
+
+            SelectedWorldIndex = index;
             WorldModel world = WorldController.GetWorld(false, index);
             UpdateWorldEdit_DataGridView(world);
         }
 
         /// <summary>
-        /// WorldEditModelからDGVを更新
+        /// WorldModelからDGVを更新
         /// </summary>
         private void UpdateWorldEdit_DataGridView(WorldModel world)
         {
@@ -466,9 +469,15 @@ namespace CraftopiaSavefileEditor.View
                 foreach (var info in row.v.Select((v, x) => new { v, x }))
                 {
                     MapEdit_DataGridView[info.x, row.y].Value = MapPieceController.GetMapPieceByPieceID(info.v.MapPieceId);
+                    var cell = (DataGridViewComboBoxCell)MapEdit_DataGridView[info.x, row.y];
                 }
             }
         }
+
+        /// <summary>
+        /// MAP編集DGVの選択中のセル位置
+        /// </summary>
+        private (int column, int row) SelectedCell = (-1, -1);
 
         /// <summary>
         /// ComboBoxをワンクリックで開く
@@ -482,10 +491,91 @@ namespace CraftopiaSavefileEditor.View
                 return;
 
             if (dgv.Columns[e.ColumnIndex] is DataGridViewComboBoxColumn)
+            {
                 SendKeys.Send("{F4}");
+                SelectedCell = (e.ColumnIndex, e.RowIndex);
+            }
+                
+        }
+
+        /// <summary>
+        /// MAP編集DGV Comboboxの描画
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MapEdit_DataGridView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if(e.Control is ComboBox)
+            {
+                ComboBox combo = (ComboBox)e.Control;
+                combo.DrawMode = DrawMode.OwnerDrawFixed;
+                combo.DrawItem -= ComboBox_DrawItem;
+                combo.DrawItem += ComboBox_DrawItem;
+            }
+        }
+
+        /// <summary>
+        /// MAP編集DGV ComboBox色描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ComboBox_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            ComboBox combo = (ComboBox)sender;
+            MapPieceModel item = (MapPieceModel)combo.Items[e.Index];
+            IslandInfo origin = WorldController?.GetIsland(true, SelectedWorldIndex, SelectedCell.column, SelectedCell.row);
+
+            Brush brush;
+            if (origin == null)
+            {
+                brush = Brushes.Black;
+            }
+            else
+            {
+                if (item.ID == origin.MapPieceId)
+                    brush = Brushes.Red;
+                else
+                    brush = Brushes.Black;
+            }
+
+            // 背景描画
+            e.DrawBackground();
+            // テキスト描画
+            e.Graphics.DrawString(item.Name, e.Font, brush, e.Bounds.X, e.Bounds.Y);
+            // フォーカス描画
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        /// MAP編集DGVセル編集後処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MapEdit_DataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (SelectedWorldIndex < 0)
+                return;
+
+            DataGridView dgv = (DataGridView)sender;
+            MapPieceModel editValue = (MapPieceModel)dgv[e.ColumnIndex, e.RowIndex].Value;
+            IslandInfo island = WorldController?.GetIsland(true, SelectedWorldIndex, e.ColumnIndex, e.RowIndex);
+            if (island == null)
+                return;
+
+            bool isEqualOrigin;
+            if (editValue == null)
+                isEqualOrigin = (island.MapPieceId == 0);
+            else
+                isEqualOrigin = (editValue.ID == island.MapPieceId);
+
+            //if (isEqualOrigin)
+            //    dgv[e.ColumnIndex, e.RowIndex].Style.BackColor = Color.White;
+            //else
+            //    dgv[e.ColumnIndex, e.RowIndex].Style.BackColor = Color.Red;
+
         }
         #endregion
 
-
+        
     }
 }
