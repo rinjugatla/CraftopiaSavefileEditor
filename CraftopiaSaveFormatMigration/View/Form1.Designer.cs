@@ -161,6 +161,7 @@ namespace CraftopiaSaveFormatMigration
             this.MinimizeBox = false;
             this.Name = "Form1";
             this.Text = "Craftopia 新旧セーブ形式移行ツール";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
