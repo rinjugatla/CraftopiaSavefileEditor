@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CraftopiaSavefileEditor", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CraftopiaSavefileEditorMod", "CraftopiaSavefileEditorMod\CraftopiaSavefileEditorMod.csproj", "{45475952-3209-4F4E-AFF1-5DAB34F6E355}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CraftopiaSaveFormatMigration", "CraftopiaSaveFormatMigration\CraftopiaSaveFormatMigration.csproj", "{C43CE654-77F6-4B2F-B291-7D8647E74CE8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{45475952-3209-4F4E-AFF1-5DAB34F6E355}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45475952-3209-4F4E-AFF1-5DAB34F6E355}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45475952-3209-4F4E-AFF1-5DAB34F6E355}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C43CE654-77F6-4B2F-B291-7D8647E74CE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C43CE654-77F6-4B2F-B291-7D8647E74CE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C43CE654-77F6-4B2F-B291-7D8647E74CE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C43CE654-77F6-4B2F-B291-7D8647E74CE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
