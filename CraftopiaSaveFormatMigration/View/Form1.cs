@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -64,13 +65,18 @@ namespace CraftopiaSaveFormatMigration
         {
             if (!Directory.Exists(SaveDirectoryPath))
             {
-                MessageBox.Show($"Saveフォルダが存在しません。\nパス {SaveDirectoryPath}", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"Saveフォルダが存在しません。\n" +
+                    $"パス {SaveDirectoryPath}\n\n" +
+                    $"セーブデータが存在しないためデータの移行は不要です。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
             if (!Directory.Exists(OldSaveDirectoryPath))
             {
-                MessageBox.Show($@"OldSaveData\Saveフォルダが存在しません。\nパス {OldSaveDirectoryPath}", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"OldSaveData/Saveフォルダが存在しません。\n" +
+                    $"パス {OldSaveDirectoryPath}\n\n" +
+                    $"このフォルダが存在しない場合、一度もAlpha, AlphaEdgeでゲームをプレイしていない可能性があります。\n" +
+                    $"Stableのみでゲームをプレイしている場合はデータの移行は不要です。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -136,7 +142,8 @@ namespace CraftopiaSaveFormatMigration
             if (errorFiles > 0)
             {
                 MessageBox.Show($"現在のセーブデータを一時フォルダに移動できませんでした。\n" +
-                    $"移動に失敗したファイル数{errorFiles}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    $"移動に失敗したファイル数{errorFiles}\n" +
+                    $"ファイル移動前後のフォルダを表示します。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -145,7 +152,8 @@ namespace CraftopiaSaveFormatMigration
             if (errorFiles > 0)
             {
                 MessageBox.Show($"OldSaveDataフォルダのファイルをSaveフォルダに移動できませんでした。\n" +
-                    $"移動に失敗したファイル数{errorFiles}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    $"移動に失敗したファイル数{errorFiles}\n" +
+                    $"ファイル移動前後のフォルダを表示します。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -154,11 +162,12 @@ namespace CraftopiaSaveFormatMigration
             if (errorFiles > 0)
             {
                 MessageBox.Show($"一時フォルダのセーブデータをOldSaveDataフォルダに移動できませんでした。\n" +
-                    $"移動に失敗したファイル数{errorFiles}", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    $"移動に失敗したファイル数{errorFiles}\n" +
+                    $"ファイル移動前後のフォルダを表示します。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            MessageBox.Show("移行が成功しました。\nセーブデータの状態を再取得します。", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("移行が成功しました。\n\nセーブデータの状態を再取得します。", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
             // ラベルなどの状態を更新
             GetCurrentSaveFormat();
         }
@@ -178,6 +187,7 @@ namespace CraftopiaSaveFormatMigration
                 Directory.Delete(to);
             Directory.CreateDirectory(to);
 
+            var errorList = new List<string>();
             var pathList = Directory.EnumerateFiles(from, "*", SearchOption.AllDirectories);
             foreach (var pathFrom in pathList)
             {
@@ -187,28 +197,35 @@ namespace CraftopiaSaveFormatMigration
                     Directory.CreateDirectory(targetDirectory);
 
                 // フォルダごと移動した場合に存在しなくなっているのでチェック
-                if (!File.Exists(pathFrom))
-                    continue;
+                if (!File.Exists(pathFrom)) { continue; }
 
                 bool isDirectory = IsDirectory(pathFrom);
-                if (isDirectory)
+                try
                 {
-                    Directory.Move(pathFrom, pathTo);
+                    if (isDirectory)
+                    {
+                        Directory.Move(pathFrom, pathTo);
+                    }
+                    else
+                    {
+                        if (File.Exists(pathTo)) { File.Delete(pathTo); }
+                        File.Move(pathFrom, pathTo);
+                    }
                 }
-                else
+                catch (Exception)
                 {
-                    if (File.Exists(pathTo))
-                        File.Delete(pathTo);
-                    File.Move(pathFrom, pathTo);
+                    errorList.Add(pathFrom);
                 }
             }
 
             // 処理後に再取得
             pathList = Directory.EnumerateFiles(from, "*", SearchOption.AllDirectories);
             var fileList = pathList.Where(p => !IsDirectory(p));
-            if (fileList.Count() > 0)
+            if (fileList.Count() > 0 || errorList.Count() > 0)
             {
                 ShowDirectory(from);
+                ShowDirectory(to);
+                ShowErrorList(errorList);
                 return fileList.Count();
             }
             else
@@ -225,7 +242,18 @@ namespace CraftopiaSaveFormatMigration
 
         private void ShowDirectory(string path)
         {
-            System.Diagnostics.Process.Start("EXPLORER.EXE", path);
+            Process.Start("EXPLORER.EXE", path);
+        }
+
+        private void ShowErrorList(IReadOnlyList<string> path)
+        {
+            string filename = $"Error_{DateTime.Now:MMddHHmmss}.txt";
+            using (StreamWriter sw = new StreamWriter(filename, false, Encoding.UTF8))
+            {
+                sw.WriteLine("以下のファイルの移動に失敗しました。\n\n");
+                sw.Write(string.Join("\n", path));
+            }
+            Process.Start("NOTEPAD.EXE", filename);
         }
     }
 }
