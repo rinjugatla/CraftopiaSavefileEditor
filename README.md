@@ -1,5 +1,13 @@
 # Craftopiaセーブデータ編集/移行ツール
 
+## シームレスアップデートの対応
+
+  こちらのアプリはシームレスアップデートに対応していません。
+  
+  シームレスアップデート後のセーブデータの編集は以下のリポジトリを参照してください。
+  
+  https://github.com/rinjugatla/CraftopiaSavefileEditorWeb
+
 ## Craftopiaセーブデータ編集ツール
 
 ### 概要
